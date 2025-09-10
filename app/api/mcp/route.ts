@@ -1,8 +1,8 @@
 // app/api/mcp/route.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { getSwapRoutes } from "@/lib/dex"; // ✅ now points to real dex.ts
-import { runOptimization } from "@/lib/comput3"; // ✅ real optimizer
+import { getSwapRoutes } from "@/lib/dex"; 
+import { runOptimization } from "@/lib/comput3";
 import { executeOnHedera } from "@/lib/executors/hedera";
 import { logToHedera } from "@/lib/logger/hederaLogger";
 
@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     }
 
     if (tool === "optimize_swap") {
-      // args.routes should be the Route[] returned from getSwapRoutes
+   
       const { routes, amount, from, to } = args;
       const best = await runOptimization({ routes, amount, from, to });
       return NextResponse.json(best);
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
 
     if (tool === "execute_swap") {
       const { best } = args;
-      // executeOnHedera should either simulate or hit SaucerSwap’s router
+
       const receipt = await executeOnHedera(best);
       await logToHedera({ action: "execute_swap", best, receipt });
       return NextResponse.json({ status: "executed", receipt });

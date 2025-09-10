@@ -1,13 +1,12 @@
-// next-app/lib/dex.ts
 import axios from "axios";
 
 export type Route = {
   id: string;
   dex: string;
-  path: string[]; // e.g. ["HBAR", "0.0.12345", "USDC"]
-  estimatedOut: string; // string to preserve precision
-  slippage: number; // percent
-  fee: number; // percent or fixed display
+  path: string[]; 
+  estimatedOut: string; 
+  slippage: number; 
+  fee: number; 
   meta?: any;
 };
 
@@ -26,7 +25,7 @@ function parseSimpleQuery(query: string) {
 /**
  * getSwapRoutes
  * - Primary: call SaucerSwap test API for quotes
- * - Fallback: generate deterministic mock routes
+ * - Fallback: deterministic mock routes
  */
 export async function getSwapRoutes(
   fromToken: string,
@@ -64,7 +63,7 @@ export async function getSwapRoutes(
     console.warn("Saucer API quote failed, falling back:", e.message ?? e.toString());
   }
 
-  // Always include fallback for hackathon demo
+  //for hackathon demo
   const fallbackRoutes: Route[] = [
     {
       id: "saucerswap-fallback",
@@ -84,7 +83,7 @@ export async function getSwapRoutes(
     },
   ];
 
-  // Merge real + fallback, ensure always array
+  // real + fallback
   routes = [...routes, ...fallbackRoutes];
 
   return { amount, from: fromToken, to: toToken, routes };
