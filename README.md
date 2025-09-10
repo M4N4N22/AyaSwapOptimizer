@@ -160,7 +160,3 @@ pnpm dev
 - Frontend logs are human-readable and mimic the UX of popular DEX UIs like SushiSwap or PancakeSwap
 
 ---
-
-## 📄 License
-
-MIT
