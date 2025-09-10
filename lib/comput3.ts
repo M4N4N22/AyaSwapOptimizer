@@ -20,7 +20,7 @@ export async function runOptimization(payload: {
   const { routes } = payload;
 
   if (!routes || !Array.isArray(routes) || routes.length === 0) {
-    // Provide a mock fallback route for demo
+    // fallback route for demo
     const mockRoute: Route = {
       id: "mock-fallback",
       dex: "MockDEX",
@@ -35,7 +35,7 @@ export async function runOptimization(payload: {
     return { best: mockRoute, reason };
   }
 
-  // If Comput3 not configured, pick highest estimatedOut deterministically
+  // If Comput3 not configured pick highest estimatedOut deterministically
   if (!COMPUT3_ENDPOINT || !COMPUT3_KEY) {
     const best = routes.reduce((a, b) =>
       parseFloat(b.estimatedOut) > parseFloat(a.estimatedOut) ? b : a
@@ -87,7 +87,7 @@ Routes: ${JSON.stringify(routes)}
       };
     }
 
-    // fallback deterministic if parsing fails
+    // fallback
     const best = routes.reduce((a, b) =>
       parseFloat(b.estimatedOut) > parseFloat(a.estimatedOut) ? b : a
     );
@@ -101,7 +101,7 @@ Routes: ${JSON.stringify(routes)}
     const best = routes.reduce((a, b) =>
       parseFloat(b.estimatedOut) > parseFloat(a.estimatedOut) ? b : a
     );
-    // also add a mock fallback route for hackathon UI
+    // mock fallback route for hackathon UI
     const mockRoute: Route = {
       id: "mock-fallback",
       dex: "MockDEX",

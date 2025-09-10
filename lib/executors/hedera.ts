@@ -1,12 +1,12 @@
-// Simulate executing a swap on Hedera
+
 export async function executeOnHedera(bestRoute: any) {
-    // For demo purposes, just simulate a Hedera transaction receipt
+    // For demo purposes
     const txId = `0.0.${Math.floor(Math.random() * 1000000)}`;
     const timestamp = new Date().toISOString();
   
     console.log("Simulated swap execution on Hedera:", bestRoute);
   
-    // Return a mock receipt
+    // mock receipt
     return {
       transactionId: txId,
       status: "SUCCESS",
